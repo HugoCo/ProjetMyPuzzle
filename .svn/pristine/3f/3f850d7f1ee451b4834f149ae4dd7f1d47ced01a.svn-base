@@ -1,0 +1,86 @@
+import java.util.LinkedList; 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+import java.awt.event.*;
+
+public class FenetreFinDeJeu extends JFrame implements ActionListener {
+
+    
+	public JPanel conteneur;
+	public JTextField txt;
+	public JButton Recommencer;
+	public JButton Quitter;
+	public JLabel fondEcran;
+    public FenetreAccueil fen;
+  
+
+
+public FenetreFinDeJeu(){
+
+    this.setTitle("MyPuzzle - Partie terminee");
+    this.setSize(500,500);
+    this.setLocation(200,200);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.fen = new FenetreAccueil();
+      
+        conteneur=new JPanel();
+		conteneur.setBounds(0,0,500,500);
+		conteneur.setLayout(null);
+		//~ conteneur.setBackground(new Color(255, 218, 185));
+         
+
+        txt=new JTextField("");
+  		txt.setText("Fin du jeu! /n nombre de ");
+		txt.setBounds(100,30,300,150);
+		txt.setBackground(new Color(255, 140, 0));
+        conteneur.add(txt);
+
+
+        Recommencer = new JButton("Recommencer");
+		Recommencer.setBounds(20,200,160,70);
+		Recommencer.setBackground(new Color(173, 255,47));
+		conteneur.add(Recommencer);
+		Recommencer.addActionListener(this);
+
+        Quitter = new JButton("Quitter");
+		Quitter.setBounds(320,200,160,70);
+		Quitter.setBackground(new Color(220,20 ,60));
+		conteneur.add(Quitter);
+		Quitter.addActionListener(this);
+
+        fondEcran = new JLabel(new ImageIcon("./fondEcran.jpg"));
+		fondEcran.setBounds(0,0,getWidth(),getHeight());
+		conteneur.add(fondEcran);
+			
+	
+        this.add(conteneur);
+  	    this.setVisible(true);
+
+ }
+
+
+  public void actionPerformed(ActionEvent e){
+		
+		if (e.getSource()== Recommencer){
+			
+			this.dispose();    
+			Fenetre.getFenetre().setVisible(true);
+						
+		   }
+		
+		else if (e.getSource()==Quitter){
+		this.dispose();
+			
+				}
+
+ 
+ }
+
+}

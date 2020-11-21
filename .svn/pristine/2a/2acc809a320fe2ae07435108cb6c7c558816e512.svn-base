@@ -1,0 +1,43 @@
+import java.util.LinkedList; 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+import java.awt.event.*;
+
+public class FenetreAccueil extends JFrame implements ActionListener {
+	private JFileChooser chooser;
+	private FileNameExtensionFilter filter;
+	private int returnVal;
+	
+	
+	public FenetreAccueil(){
+		this.setTitle("MyPuzzle - Accueil");
+		this.setSize(400,400);
+		this.setLocation(300,200);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(parent);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: "+chooser.getSelectedFile().getName());
+		}
+		JTextField monChampTexte = new JTextField ("");
+		monChampTexte.setBounds(100,70,60,50);
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		
+	}
+	
+}
+			
+			

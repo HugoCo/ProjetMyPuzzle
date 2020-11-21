@@ -1,0 +1,26 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
+
+public class sans_titre {
+	
+	
+	public static void main (String[] args) {	
+		
+		try{
+		BufferedImage bi = ImageIO.read(new File("./Kaaris.jpg"));
+		System.out.println(bi.getWidth());
+		System.out.println(bi.getHeight());
+		//Fenetre fen = new Fenetre();
+	} catch (IOException e){}
+		Fenetre fen = new Fenetre();
+	}
+	
+	
+
+}

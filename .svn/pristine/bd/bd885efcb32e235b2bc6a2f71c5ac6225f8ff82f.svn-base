@@ -1,0 +1,65 @@
+import java.util.LinkedList; 
+import javax.swing.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+import java.awt.event.*;
+
+public class FenetreAccueil extends JFrame implements ActionListener {
+	private JFileChooser chooser;
+	private FileNameExtensionFilter filter;
+	private int returnVal;
+	private JButton open;
+	private JScrollPane ChoixCouleur;
+	private JList couleurs; 
+	
+	
+	public FenetreAccueil(){
+		this.setTitle("MyPuzzle - Accueil");
+		this.setSize(700,600);
+		this.setLocation(300,200);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		JButton open = new JButton("Selectionner un fichier"); //nouveau bouton open
+		open.setBounds(100,300,200,100);
+		open.addActionListener(this);
+		
+		JTextField monChampTexte = new JTextField ("Choisir pseudo");
+		monChampTexte.setBounds(100,70,150,50);
+		
+		couleurs = new JList();
+		
+		JScrollPane ChoixCouleur = new JScrollPane (couleurs);
+		ChoixCouleur.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+        ChoixCouleur.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+		ChoixCouleur.setBounds(100,150,150,50);
+		
+		JPanel Conteneur1 = new JPanel();
+		Conteneur1.setLayout(null);
+		Conteneur1.setBounds(20,20,360,150);
+		Conteneur1.add(open);
+		Conteneur1.add(monChampTexte);
+		Conteneur1.add(ChoixCouleur);
+		add(Conteneur1);
+		setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		JFileChooser chooser = new JFileChooser();
+		chooser.setApproveButtonText("Choix du fichier...");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("Vous avez choisi d'ouvrir: "+chooser.getSelectedFile().getName());
+			chooser.getSelectedFile();
+		}
+		
+	}
+	
+}
+			
+			

@@ -1,0 +1,133 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.awt.Color;
+
+public class Fenetre extends JFrame  {
+	
+	
+	String path="./Kaaris.jpg";
+	
+	public Fenetre(){
+			
+		
+	
+		
+		/*Fenêtre */
+		setTitle("Test");
+		setBounds(0,0,1000,1000);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+		
+		
+		/* Panneaux*/
+		JPanel pan = decoupe(1,path);
+		
+		
+		
+		
+		
+		
+		 // ajouter
+		
+		/*Fin fenêtre*/
+		
+		setContentPane(pan);
+		setVisible(true);
+		
+		
+		
+		
+		
+}  public JPanel decoupe (int dif, String path){ // Méthode renvoyant l'image découpée selon le niveau de difficulté sous forme d'un panneau contenant d'autres panneaux contenant les images découpées
+	int nbPiece =1;
+	JPanel ret = new JPanel (); // Impossible d'utiliser tableau car non dynamique --> pas intéressant car utilisation de 3 switch case avec tailles différentes tableau
+	ret.setLayout(null);
+	ImageIcon image = new ImageIcon(path);
+	int w = image.getIconWidth();
+	int h = image.getIconHeight();
+	ret.setBounds(0,0,w,h);
+	
+	
+	try {
+		
+		/* Initialisation des objets communs à tous les cas du switch */
+		
+		BufferedImage bi = ImageIO.read(new File(path));
+		
+		ImageIcon [] [] img;
+		JLabel [] [] lbl;
+		
+		
+		
+		switch (dif){
+			case 1:
+			/*Initialisation*/
+			nbPiece = 9;
+			int taille = (int)Math.sqrt(nbPiece);
+			BufferedImage [][] bfi = new BufferedImage [taille][taille];
+			img = new ImageIcon [taille][taille];
+			lbl = new JLabel [taille][taille];
+			JPanel [] [] p = new JPanel[taille][taille];
+			for (int i=0;i<taille;i++){ 
+				for(int j=0;j<taille;j++){
+				p[i][j] = new JPanel(); //initialisation de chq panneau du tbleau
+				bfi[i][j]=ImageIO.read(new File(path)); // chaque bif lit le chemin pour accéder à l'image
+				
+			}
+			}
+			
+			
+			/*Traitement*/ 
+			
+				for (int m=0;m<taille;m++){
+						for(int n=0;n<taille;n++){
+							
+							img[m][n]=new ImageIcon(bfi[n][m].getSubimage((n*w)/3,(h*m)/3,(w)/3,(h-1)/3)); //
+					
+				}
+			}
+			
+			/* Ajout de chaque élément traité dans les tableaux/LkdList */
+			
+			for (int i=0;i<taille;i++){
+				for (int j=0;j<taille;j++){
+					lbl[i][j]=new JLabel(img[i][j]);
+					p[i][j].add(lbl[i][j]);
+					p[i][j].setBounds((j*w)/3,(h*i)/3,(w)/3,(h)/3);
+					ret.add(p[i][j]);
+				}
+			}
+			
+			break;
+			
+			case 2:
+			nbPiece = 9;
+			//~ lbl = new JLabel [nbPiece];
+			
+			
+			break;
+			
+			case 3:
+			nbPiece = 9;
+			//~ lbl = new JLabel [nbPiece];
+			
+			
+			break;
+			
+			default:
+			//~ lbl = new JLabel [nbPiece];
+			
+		}
+	} catch (IOException e){}
+				return ret;
+}
+
+	// Utiliser GRIDLAYOUT 
+
+}

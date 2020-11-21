@@ -1,0 +1,99 @@
+import java.util.LinkedList; 
+import javax.swing.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+import java.awt.event.*;
+
+public class FenetreAccueil extends JFrame implements ActionListener {
+	private JFileChooser chooser;
+	private FileNameExtensionFilter filter;
+	private int returnVal;
+	private JButton open;
+	private JList<String> couleurs; 
+	private JList <String> choixNiveau;
+	private JLabel textCouleur;
+	private JLabel textNiveau;
+	
+	public FenetreAccueil(){
+		this.setTitle("MyPuzzle - Accueil");
+		this.setSize(800,650);
+		this.setLocation(300,200);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		textCouleur = new JLabel("Choisissez une couleur de fond");
+		textCouleur.setBounds(75,150,150,50);
+		
+		textNiveau =  new JLabel("Choisissez le niveau de difficulte");
+		textNiveau.setBounds(50,150,200,50);
+		
+		JButton open = new JButton("Selectionner un fichier de puzzle"); //nouveau bouton open
+		open.setBounds(25,100,250,60);
+		open.addActionListener(this);
+		
+		JTextField monChampTexte = new JTextField ("Choisir pseudo");
+		monChampTexte.setBounds(75,100,150,50);
+		
+		String[] data = {"Bleu","Jaune","Rouge","Vert","Blanc"};
+		couleurs = new JList<String>(data);
+		couleurs.setBounds(75,200,150,150);
+		
+		String[] data2 = {"1","2","3"};
+		choixNiveau = new JList <String>(data2);
+		choixNiveau.setBounds(75,200,150,80);
+		
+		JButton boutonJouer= new JButton("Jouer");
+		boutonJouer.setBounds(100,400,150,80);
+		
+		JPanel Conteneur1= new JPanel();
+		Conteneur1.setBounds(50,50,300,500);
+		Conteneur1.setBackground(new Color(244, 161, 65));
+		Conteneur1.setLayout(null);
+		Conteneur1.add(monChampTexte);
+		Conteneur1.add(textCouleur);
+		Conteneur1.add(couleurs);
+		
+		JPanel Conteneur2= new JPanel();
+		Conteneur2.setBounds(400,50,300,500);
+		Conteneur2.setBackground(new Color(244, 161, 65));
+		Conteneur2.setLayout(null);
+		Conteneur2.add(open);
+		Conteneur2.add(choixNiveau);
+		Conteneur2.add(textNiveau);
+		Conteneur2.add(boutonJouer);
+		
+		JPanel ConteneurMain = new JPanel();
+		ConteneurMain.setBackground(new Color(195, 184, 183));
+		ConteneurMain.setLayout(null);
+		ConteneurMain.add(Conteneur1);
+		ConteneurMain.add(Conteneur2);
+		
+		
+		add(ConteneurMain);
+		setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		if(e.getSource()==open){				
+			JFileChooser chooser = new JFileChooser();
+			chooser.setApproveButtonText("Choix du fichier...");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showOpenDialog(null);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				System.out.println("Vous avez choisi d'ouvrir: "+chooser.getSelectedFile().getName());
+				chooser.getSelectedFile();
+			}
+		}
+		
+		if(e.getSource()==boutonJouer){
+		}
+		
+	}
+	
+}
+			
+			

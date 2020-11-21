@@ -1,0 +1,12 @@
+import javax.swing.JPanel;
+
+
+public class Piece extends JPanel{
+	
+	public int numero;
+	
+	public Piece(int numero){
+		this.numero=numero;
+	}
+}
+		

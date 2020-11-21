@@ -1,0 +1,11 @@
+
+public class Piece {
+	
+	public int numero;
+	public Image piece;
+	
+	public Piece(int numero, Image piece){
+		this.numero=numero;
+		this.piece=piece;
+	}
+		
